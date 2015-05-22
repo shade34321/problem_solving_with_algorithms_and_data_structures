@@ -28,14 +28,14 @@ class UnorderedList:
 
     def add(self, data):
         temp = Node(data)
-        temp.next = head
-        head = temp
+        temp.next = self.head
+        self.head = temp
 
     def size(self):
         temp = self.head
         list_size = 0
 
-        while temp != None
+        while temp != None:
             list_size = list_size + 1
             temp = temp.getNext()
 
@@ -55,7 +55,7 @@ class UnorderedList:
 
         
     def remove(self, data):
-        temp = head
+        temp = self.head
         previoius = None
         found = False
     
@@ -73,10 +73,10 @@ class UnorderedList:
 
     def append(self, data):
         new_node = Node(data)
-        temp = head
+        temp = self.head
 
-        if head == None:
-            head = new_node
+        if self.head == None:
+            self.head = new_node
         else:
             while temp.getNext() != None:
                 temp = temp.getNext
@@ -84,8 +84,35 @@ class UnorderedList:
             temp.setNext(new_node)
         
     
-    def insert(self):
+    def insert(self, pos, data):
+        new_node = Node(data)
+        temp = self.head
 
-    def index(self):
+        for i in range(pos):
+            temp = temp.getNext()
 
-    def pop(self):
+        new_node.setNext(temp.getNext())
+        temp.setNext(new_node)
+
+    def print_list(self):
+        temp = self.head
+        str_list = ""
+
+        while temp != None:
+            str_list = str(temp.getData()) + " -> "
+            temp = temp.getNext()
+
+        print "%s%d" % (str_list, temp.getData())
+
+    #def index(self):
+
+    #def pop(self):
+
+
+
+test_list = UnorderedList()
+
+for i in range(10):
+    test_list.add(i)
+
+test_list.print_list()
