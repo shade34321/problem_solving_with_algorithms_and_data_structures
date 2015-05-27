@@ -1,59 +1,17 @@
 #!/usr/bin/env python
 
+from lists import Lists
 from node import Node
 
-class UnorderedList:
+class UnorderedList(Lists):
     
     def __init__(self):
-        self.head = None
-
-    def isEmpty(self):
-        return self.head == None
+        Lists.__init__(self)
 
     def add(self, data):
         temp = Node(data)
         temp.next = self.head
         self.head = temp
-
-    def size(self):
-        temp = self.head
-        list_size = 0
-
-        while temp != None:
-            list_size = list_size + 1
-            temp = temp.getNext()
-
-        return list_size
-
-    def search(self, data):
-        temp = self.head
-        found = False
-
-        while temp != None and not found:
-            if temp.getData() == data:
-                found = True
-            else:
-                temp = temp.getNext()
-
-        return found
-
-        
-    def remove(self, data):
-        temp = self.head
-        previoius = None
-        found = False
-    
-        while not found:
-            if temp.getData() == data:
-                found = True
-            else:
-                previous = temp
-                temp = temp.getNext()
-
-        if previous == None:
-            self.head = temp.getNext()
-        else:
-            previous.setNext(temp.getNext())
 
     def append(self, data):
         new_node = Node(data)
@@ -82,54 +40,6 @@ class UnorderedList:
 
             new_node.setNext(temp.getNext())
             temp.setNext(new_node)
-
-    def print_list(self):
-        temp = self.head
-        str_list = ""
-
-        while temp.getNext() != None:
-            str_list += str(temp.getData()) + " -> "
-            temp = temp.getNext()
-
-        print "%s%d" % (str_list, temp.getData())
-
-    def index(self, data):
-        temp = self.head
-        found = False
-        i = 0
-
-        while temp != None and not found:
-            if temp.getData() == data:
-                found = True
-            else:
-                i += 1
-                temp = temp.getNext()
-
-        return i
-    
-    def pop(self, pos=-1):
-        temp = self.head
-        prev = None
-
-        if pos == -1 or pos == self.size():
-            while temp.getNext():
-                prev = temp
-                temp = temp.getNext()
-
-            prev.setNext(None)
-        elif pos == 1:
-            prev = temp.getNext()
-            self.head = prev
-        else:
-            for i in range(pos - 1):
-                prev = temp
-                temp = temp.getNext()
-            prev.setNext(temp.getNext())
-        
-        data = temp.getData()
-
-        return data
-        
 
 test_list = UnorderedList()
 

@@ -32,7 +32,7 @@ class Lists:
         
     def remove(self, data):
         temp = self.head
-        previoius = None
+        previous = None
         found = False
     
         while not found:
@@ -71,3 +71,26 @@ class Lists:
                 temp = temp.getNext()
 
         return index
+    
+    def pop(self, pos=-1):
+        temp = self.head
+        prev = None
+
+        if pos == -1 or pos == self.size():
+            while temp.getNext():
+                prev = temp
+                temp = temp.getNext()
+
+            prev.setNext(None)
+        elif pos == 1:
+            prev = temp.getNext()
+            self.head = prev
+        else:
+            for i in range(pos - 1):
+                prev = temp
+                temp = temp.getNext()
+            prev.setNext(temp.getNext())
+        
+        data = temp.getData()
+
+        return data

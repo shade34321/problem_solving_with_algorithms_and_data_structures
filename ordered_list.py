@@ -30,24 +30,6 @@ class OrderedList(Lists):
         else:
             prev.setNext(new_node)
                 
-    def remove(self, item):
-        temp = self.head
-        prev = None
-        found = False
-
-        while temp and not found:
-           if temp.getData() == item:
-                found = True
-           else:
-               prev = temp
-               temp = temp.getNext()
-
-        if not prev:
-            prev = temp
-            self.head = temp.getNext()
-        else:
-            prev.setNext(temp.getNext())
-
     def search(self, item):
         temp = self.head
         found = False
@@ -61,55 +43,6 @@ class OrderedList(Lists):
                 temp = temp.getNext()
 
         return found
-
-    def isEmpty(self):
-        return self.head == None;
-
-    def size(self):
-        temp = self.head
-        i = 0
-
-        while temp:
-            i += 1
-            temp = temp.getNext()
-
-        return i
-
-    def index(self, item):
-        temp = self.head
-        found = False
-        index = 0
-
-        while temp and not found:
-            if temp.getData() == item:
-                found = True
-            else:
-                index += 1
-                temp = temp.getNext()
-
-        return index
-    
-    def pop(self, position=-1):
-        temp = self.head
-        prev = None
-
-        if position == -1 or position == self.size():
-            while temp.getNext():
-                prev = temp
-                temp = temp.getNext()
-            
-            prev.setNext(None)
-        elif position == 1:
-            prev = temp.getNext()
-            self.head = prev
-        else:
-            for i in range(position - 1):
-                prev = temp
-                temp = temp.getNext()
-            
-            prev.setNext(temp.getNext())
-
-        return temp.getData()
 
 test_list = OrderedList()
 
