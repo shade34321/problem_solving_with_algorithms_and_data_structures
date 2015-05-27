@@ -107,33 +107,26 @@ class UnorderedList:
 
         return i
     
-    def pop(self):
+    def pop(self, pos=-1):
         temp = self.head
         prev = None
 
-        while temp.getNext() != None:
-            prev = temp
-            temp = temp.getNext()
-
-        data = temp.getData()
-        prev.setNext(None)
-        return data
-    
-    def pop(self, pos):
-        temp = self.head
-        prev = None
-      
-        if pos == 0:
-            temp = temp.getNext()
-            self.head = temp 
-            data = temp.getData()
-        else: 
-            for i in range(pos):
+        if pos == -1 or pos == self.size():
+            while temp.getNext():
                 prev = temp
                 temp = temp.getNext()
 
+            prev.setNext(None)
+        elif pos == 1:
+            prev = temp.getNext()
+            self.head = prev
+        else:
+            for i in range(pos - 1):
+                prev = temp
+                temp = temp.getNext()
             prev.setNext(temp.getNext())
-            data = temp.getData()
+        
+        data = temp.getData()
 
         return data
         
@@ -150,7 +143,7 @@ for i in range(10):
 print "List size"
 print(test_list.size())
 
-print "List Search"
+print "List Search 8"
 print(test_list.search(8))
 
 print "List insert"
@@ -161,12 +154,21 @@ print "List append"
 test_list.append(12)
 test_list.print_list()
 
-print "List remove"
+print "List remove 8"
 test_list.remove(8)
 test_list.print_list()
 
-print "List index"
+print "List index 5"
 print(test_list.index(4))
 
 print "List pop"
+print (test_list.pop())
+test_list.print_list()
+
+print "List pop 3"
 print (test_list.pop(3))
+test_list.print_list()
+
+print "List pop 1"
+print (test_list.pop(1))
+test_list.print_list()
