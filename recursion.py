@@ -9,15 +9,11 @@ def reverse(data):
         return data[-1] + reverse(data[:-1])
 
 def removeWhite(data):
-    data.translate(None, string.punctuation)
+    data = data.translate(None, string.punctuation)
     return "".join(data.split())
 
 def isPal(data):
-    tester = removeWhite(data)
-    print "Tester: %s" % tester
-    tester = reverse(tester)
-    print "Tester: %s" % tester
-    return removeWhite(data.lower()) == tester.lower() 
+    return removeWhite(data.lower()) == reverse(removeWhite(data.lower()))
 
 print "Passing test"
 print(reverse("test"))
