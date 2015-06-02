@@ -60,6 +60,16 @@ def postOrderEval(tree):
         else:
             return tree.getRootVal()
 
+def printExp(tree):
+    sVal = ""
+    
+    if tree:
+        sVal = "(" + printExp(tree.getLeftChild())
+        sVal = sVal + str(tree.getRootVal())
+        sVal = sVal + printExp(tree.getRightChild()) + ')'
+
+    return sVal
+
 pt = buildParseTree("( ( 10 + 5 ) * 3 )")
 print "Evaluate"
 print(evaluate(pt))
@@ -70,3 +80,4 @@ print(pt.preorder())
 print "Inorder"
 print(pt.inorder())
 print(postOrderEval(pt))
+print(printExp(pt))
